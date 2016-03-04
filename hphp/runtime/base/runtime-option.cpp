@@ -40,6 +40,7 @@
 #include "hphp/util/file-cache.h"
 #include "hphp/util/log-file-flusher.h"
 #include "hphp/runtime/base/file-util.h"
+#include "hphp/runtime/version.h"
 
 #include "hphp/parser/scanner.h"
 
@@ -360,7 +361,11 @@ std::string RuntimeOption::ExtensionDir = "";
 
 std::vector<std::string> RuntimeOption::Extensions;
 std::vector<std::string> RuntimeOption::DynamicExtensions;
+#ifdef HHVM_DYNAMIC_EXTENSION_DIR
+std::string RuntimeOption::DynamicExtensionPath = HHVM_DYNAMIC_EXTENSION_DIR + '/' + HHVM_VERSION_MAJOR + '.' + HHVM_VERSION_MINOR;
+#else
 std::string RuntimeOption::DynamicExtensionPath = ".";
+#endif
 
 HackStrictOption
   RuntimeOption::StrictArrayFillKeys = HackStrictOption::OFF,
