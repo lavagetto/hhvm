@@ -18,6 +18,7 @@
 #define incl_HPHP_RUNTIME_OPTION_H_
 
 #include <folly/dynamic.h>
+#include <folly/Format.h>
 
 #include <unordered_map>
 #include <vector>

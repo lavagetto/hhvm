@@ -383,7 +383,14 @@ std::string RuntimeOption::ExtensionDir = "";
 
 std::vector<std::string> RuntimeOption::Extensions;
 std::vector<std::string> RuntimeOption::DynamicExtensions;
+#ifdef HHVM_DYNAMIC_EXTENSION_DIR
+std::string RuntimeOption::DynamicExtensionPath = folly::sformat(
+    "{}/{}",
+    HHVM_DYNAMIC_EXTENSION_DIR,
+    HHVM_VERSION_BRANCH);
+#else
 std::string RuntimeOption::DynamicExtensionPath = ".";
+#endif
 
 HackStrictOption
   RuntimeOption::StrictArrayFillKeys = HackStrictOption::OFF,
